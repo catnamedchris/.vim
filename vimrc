@@ -50,3 +50,12 @@ nnoremap  <Leader><Leader> <C-^>
 
 inoremap jk <Esc>
 inoremap kj <Esc>
+
+nmap <silent> ,ev :e $MYVIMRC<CR>
+
+abbrev ch :! google-chrome %:p<CR>
+abbrev ff :! firefox %:p<CR>
+
+if has("autocmd")
+    autocmd BufWritePost .vimrc source $MYVIMRC
+endif
