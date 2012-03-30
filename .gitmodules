@@ -1,0 +1,12 @@
+[submodule "bundle/molokai"]
+	path = bundle/molokai
+	url = git://github.com/mrtazz/molokai.vim.git
+[submodule "bundle/vim-colors-solarized"]
+	path = bundle/vim-colors-solarized
+	url = git://github.com/altercation/vim-colors-solarized.git
+[submodule "bundle/vim-surround"]
+	path = bundle/vim-surround
+	url = git://github.com/tpope/vim-surround.git
+[submodule "bundle/zencoding-vim"]
+	path = bundle/zencoding-vim
+	url = git://github.com/mattn/zencoding-vim.git
