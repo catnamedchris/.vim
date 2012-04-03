@@ -11,7 +11,7 @@ syntax on
 
 colorscheme solarized
 if has("gui_running")
-    set guifont=Monaco\ 10
+    set guifont=Monaco\ 12
 else
     set guifont=Monospace\ 10
 endif
