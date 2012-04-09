@@ -11,7 +11,11 @@ syntax on
 
 colorscheme solarized
 if has("gui_running")
-    set guifont=Monaco\ 12
+    if has("gui_gtk2")
+        set guifont=Monaco\ 12
+    else
+        set guifont=Monaco:h12
+    endif
 else
     set guifont=Monospace\ 10
 endif
@@ -31,8 +35,8 @@ set expandtab
 set tabstop=4
 set shiftwidth=4
 
-set list
-set listchars=tab:>.,trail:.,extends:#,nbsp:.
+"set list
+"set listchars=tab:>.,trail:.,extends:#,nbsp:.
 
 set hidden
 
@@ -40,6 +44,8 @@ set noswapfile
 
 set incsearch
 set ignorecase
+
+let g:user_zen_expandabbr_key="<C-e>"
 
 nnoremap <C-e> ,
 vnoremap <C-e> ,
