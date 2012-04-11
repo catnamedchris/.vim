@@ -1,67 +1,122 @@
+" Init ---{{{
+" Load plugins
 call pathogen#infect()
+" }}}
 
-set nocompatible
-
-set autochdir
-
-filetype on
-filetype plugin on
-filetype indent on
-syntax on
-
+" Appearance ----{{{
+" Colors
 colorscheme solarized
+
+" Font
 if has("gui_running")
-    if has("gui_gtk2")
+    if has("gui_gtk")
         set guifont=Monaco\ 12
-    else
+    elseif has("gui_macvim")
         set guifont=Monaco:h12
+    else
+        set guifont=Monospace\ 10
     endif
-else
-    set guifont=Monospace\ 10
 endif
 
+" No toolbar or right scrollbar
 set guioptions-=T
 set guioptions-=r
 
+" Enable line numbers, column marker, and status line
 set number
-set ruler
 set colorcolumn=80
 set laststatus=2
-set stl=%f\ %m\ %r\ Line:\ %l/%L[%p%%]\ Col:\ %c\ Buf:\ #%n\ [%b][0x%B]
-set nowrap
+set statusline=%f\ %m\ %r%=Line:\ %l/%-5L\ Col:\ %-5c\ Buf:\ #%n 
+" }}}
 
+" Indentation/tabs ----{{{
 set autoindent
+
 set expandtab
 set tabstop=4
 set shiftwidth=4
+autocmd FileType html setlocal tabstop=2 shiftwidth=2
+" }}}
 
-"set list
-"set listchars=tab:>.,trail:.,extends:#,nbsp:.
+" File-specific settings ----{{{
+" Enable file-specific plugins and indentation
+filetype plugin indent on
 
-set hidden
+" Syntax highlighting
+syntax on
 
-set noswapfile
+" Vim file folding
+augroup filetype_vim
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker
+augroup END
+" }}}
 
-set incsearch
-set ignorecase
+" Mappings ----{{{
+" Zen-coding expansion key
+let g:user_zen_expandabbr_key="<c-e>"
 
-let g:user_zen_expandabbr_key="<C-e>"
-
-nnoremap <C-e> ,
-vnoremap <C-e> ,
+" Set comma as the leader
 let mapleader=","
+let maplocalleader="\\"
 set timeoutlen=250
 
-nnoremap  <Leader><Leader> <C-^>
+" Move line up/down
+nnoremap <c-k> ddkP
+nnoremap <c-j> ddp
 
-inoremap jk <Esc>
-inoremap kj <Esc>
+" Move to beginning/end of a line
+nnoremap H ^
+nnoremap L $
 
-nmap <silent> ,ev :e $MYVIMRC<CR>
+" Move to previous cursor location
+nnoremap  <leader><leader> <c-^>
 
-abbrev ch :! google-chrome %:p<CR>
-abbrev ff :! firefox %:p<CR>
+" Open .vimrc
+nnoremap <leader>ev :e $MYVIMRC<cr>
 
-if has("autocmd")
-    autocmd BufWritePost .vimrc source $MYVIMRC
+" Delete line while in insert mode
+inoremap <c-d> <esc>ddi
+
+" Exit insert mode
+inoremap jk <esc>
+inoremap kj <esc>
+" }}}
+
+" Other ----{{{
+" Don't use vi defaults
+set nocompatible
+
+" Automatically set current directory to that of the current file
+set autochdir
+
+" No text wrapping since wrapping doesn't follow indents
+set nowrap
+
+" Search
+set incsearch
+set hlsearch
+set ignorecase
+
+" Enable buffer switching without saving
+set hidden
+
+" Don't create backup or swap files
+set nobackup
+set noswapfile
+
+" Open file in chrome/firefox
+if has("mac")
+    abbrev ff :! open -a firefox %:p<cr>
 endif
+if has("unix")
+    abbrev ch :! google-chrome %:p<cr>
+    abbrev ff :! firefox %:p<cr>
+endif
+
+" Automatically reload .vimrc upon saving
+augroup reload
+    autocmd!
+    autocmd BufWritePost .vimrc source $MYVIMRC
+augroup END
+" }}}
