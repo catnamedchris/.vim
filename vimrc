@@ -10,7 +10,7 @@ colorscheme solarized
 " Font
 if has("gui_running")
     if has("gui_gtk")
-        set guifont=Monaco\ 12
+        set guifont=Monaco\ 10
     elseif has("gui_macvim")
         set guifont=Monaco:h12
     else
@@ -108,8 +108,8 @@ set noswapfile
 " Open file in chrome/firefox
 if has("mac")
     abbrev ff :! open -a firefox %:p<cr>
-endif
-if has("unix")
+    abbrev sf :! open -a safari %:p<cr>
+elseif has("unix")
     abbrev ch :! google-chrome %:p<cr>
     abbrev ff :! firefox %:p<cr>
 endif
