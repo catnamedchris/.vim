@@ -1,6 +1,10 @@
 ## My humble vim setup
 
-The actual .vimrc is in the home directory and links to the vimrc file listed here. To install the plugins, run:
+While inside .vim, link the .vimrc file in your home directory to vimrc:
+
+    ln -s ~/.vimrc
+
+Then install the plugins:
 
     git submodule init
     git submodule update

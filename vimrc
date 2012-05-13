@@ -4,11 +4,11 @@ call pathogen#infect()
 " }}}
 
 " Appearance ----{{{
-" Colors
-colorscheme solarized
-
-" Font
+" Colors/Font
 if has("gui_running")
+    set background=light
+    colorscheme solarized
+
     if has("gui_gtk")
         set guifont=Monaco\ 10
     elseif has("gui_macvim")
@@ -18,9 +18,11 @@ if has("gui_running")
     endif
 endif
 
-" No toolbar or right scrollbar
+" No menu, toolbar or left/right scrollbar
+set guioptions-=m
 set guioptions-=T
 set guioptions-=r
+set guioptions-=L
 
 " Enable line numbers, column marker, and status line
 set number
@@ -81,6 +83,24 @@ inoremap <c-d> <esc>ddi
 " Exit insert mode
 inoremap jk <esc>
 inoremap kj <esc>
+
+" Window navigation
+nnoremap <a-k> <c-w>k
+nnoremap <a-j> <c-w>j
+nnoremap <a-h> <c-w>h
+nnoremap <a-l> <c-w>l
+
+" Window resizing
+if bufwinnr(1)
+    nnoremap <a-up> <c-w>+
+    nnoremap <a-down> <c-w>-
+    nnoremap <a-left> <c-w><
+    nnoremap <a-right> <c-w>>
+    nnoremap <a-=> <c-w>=
+endif
+
+" Repeat recording
+nnoremap <space> @q
 " }}}
 
 " Other ----{{{
@@ -107,11 +127,11 @@ set noswapfile
 
 " Open file in chrome/firefox
 if has("mac")
-    abbrev ff :! open -a firefox %:p<cr>
-    abbrev sf :! open -a safari %:p<cr>
+    cabbrev ff :! open -a firefox %:p<cr>
+    cabbrev sf :! open -a safari %:p<cr>
 elseif has("unix")
-    abbrev ch :! google-chrome %:p<cr>
-    abbrev ff :! firefox %:p<cr>
+    cabbrev ch :! google-chrome --enable-file-cookies --allow-file-access-from-files %:p&<cr>
+    cabbrev ff :! firefox %:p&<cr>
 endif
 
 " Automatically reload .vimrc upon saving
