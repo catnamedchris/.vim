@@ -8,6 +8,8 @@ call pathogen#infect()
 if has("gui_running")
     set background=light
     colorscheme solarized
+    set lines=56
+    set columns=83
 
     if has("gui_gtk")
         set guifont=Monaco\ 10
@@ -71,7 +73,7 @@ nnoremap <c-j> ddp
 nnoremap H ^
 nnoremap L $
 
-" Move to previous cursor location
+" Move to previous buffer
 nnoremap  <leader><leader> <c-^>
 
 " Open .vimrc
@@ -101,6 +103,9 @@ endif
 
 " Repeat recording
 nnoremap <space> @q
+
+" Javascript self-executing function template
+iabbrev jsf (function() {}());<left><left><left><left><left><cr><tab><left>
 " }}}
 
 " Other ----{{{
@@ -112,6 +117,9 @@ set autochdir
 
 " No text wrapping since wrapping doesn't follow indents
 set nowrap
+
+" Turn on expansion of <cr> within delimiters
+let delimitMate_expand_cr=1
 
 " Search
 set incsearch
@@ -131,6 +139,7 @@ if has("mac")
     cabbrev sf :! open -a safari %:p<cr>
 elseif has("unix")
     cabbrev ch :! google-chrome --enable-file-cookies --allow-file-access-from-files %:p&<cr>
+    cabbrev cr :! chromium-browser --enable-file-cookies --allow-file-access-from-files %:p&<cr>
     cabbrev ff :! firefox %:p&<cr>
 endif
 
