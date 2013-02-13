@@ -33,15 +33,6 @@ set laststatus=2
 set statusline=%f\ %m\ %r%=Line:\ %l/%-5L\ Col:\ %-5c\ Buf:\ #%n 
 " }}}
 
-" Indentation/tabs ----{{{
-set autoindent
-
-set expandtab
-set tabstop=4
-set shiftwidth=4
-autocmd FileType html setlocal tabstop=2 shiftwidth=2
-" }}}
-
 " File-specific settings ----{{{
 " Enable file-specific plugins and indentation
 filetype plugin indent on
@@ -54,6 +45,16 @@ augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
+" }}}
+
+" Indentation/tabs ----{{{
+set autoindent
+
+set expandtab
+set tabstop=4
+set shiftwidth=4
+autocmd FileType html setlocal tabstop=2 shiftwidth=2
+autocmd FileType javascript setlocal tabstop=2 shiftwidth=2
 " }}}
 
 " Mappings ----{{{
@@ -92,6 +93,12 @@ nnoremap <a-j> <c-w>j
 nnoremap <a-h> <c-w>h
 nnoremap <a-l> <c-w>l
 
+" Window repositioning
+nnoremap <leader><a-k> <c-w>K
+nnoremap <leader><a-j> <c-w>J
+nnoremap <leader><a-h> <c-w>H
+nnoremap <leader><a-l> <c-w>L
+
 " Window resizing
 if bufwinnr(1)
     nnoremap <a-up> <c-w>+
@@ -106,14 +113,27 @@ nnoremap <space> @q
 
 " Javascript self-executing function template
 iabbrev jsf (function() {}());<left><left><left><left><left><cr><tab><left>
+
+" Move to next warning/error
+nnoremap <leader>ne :lnext<cr>
+nnoremap <leader>pe :lprev<cr>
+" }}}
+
+" Syntastic ----{{{
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_auto_loc_list=1
 " }}}
 
 " Other ----{{{
 " Don't use vi defaults
 set nocompatible
 
-" Automatically set current directory to that of the current file
-set autochdir
+" Automatically set current directory to that of the current file. This will
+" interfere with the Ctrl-P plugin.
+" set autochdir
 
 " No text wrapping since wrapping doesn't follow indents
 set nowrap
@@ -148,4 +168,10 @@ augroup reload
     autocmd!
     autocmd BufWritePost .vimrc source $MYVIMRC
 augroup END
+
+" Automatically reload files if they've been changed externally
+set autoread
+
+" Allow ctrlp to open multiple buffers of the same file
+let g:ctrlp_switch_buffer = ''
 " }}}
