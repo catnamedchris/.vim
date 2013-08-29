@@ -5,16 +5,16 @@ call pathogen#infect()
 
 " Appearance ----{{{
 " Colors/Font
+set background=dark
+colorscheme solarized
 if has("gui_running")
-    set background=light
-    colorscheme solarized
     set lines=56
     set columns=83
 
     if has("gui_gtk")
         set guifont=Monaco\ 10
     elseif has("gui_macvim")
-        set guifont=Monaco:h12
+        set guifont=Monaco\ for\ Powerline:h12
     else
         set guifont=Monospace\ 10
     endif
@@ -30,7 +30,11 @@ set guioptions-=L
 set number
 set colorcolumn=80
 set laststatus=2
-set statusline=%f\ %m\ %r%=Line:\ %l/%-5L\ Col:\ %-5c\ Buf:\ #%n 
+"set statusline=%f\ %m\ %r%=Line:\ %l/%-5L\ Col:\ %-5c\ Buf:\ #%n
+set rtp+=/Users/Chris/Library/powerline/powerline/bindings/vim
+
+set list
+set listchars=trail:•
 " }}}
 
 " File-specific settings ----{{{
@@ -55,6 +59,7 @@ set tabstop=4
 set shiftwidth=4
 autocmd FileType html setlocal tabstop=2 shiftwidth=2
 autocmd FileType javascript setlocal tabstop=2 shiftwidth=2
+autocmd FileType jade setlocal tabstop=2 shiftwidth=2
 " }}}
 
 " Mappings ----{{{
@@ -93,11 +98,23 @@ nnoremap <a-j> <c-w>j
 nnoremap <a-h> <c-w>h
 nnoremap <a-l> <c-w>l
 
+" ...analogous iTerm2 bindings
+nnoremap ˚ <c-w>k
+nnoremap ∆ <c-w>j
+nnoremap ˙ <c-w>h
+nnoremap ¬ <c-w>l
+
 " Window repositioning
 nnoremap <leader><a-k> <c-w>K
 nnoremap <leader><a-j> <c-w>J
 nnoremap <leader><a-h> <c-w>H
 nnoremap <leader><a-l> <c-w>L
+
+" ...analogous iTerm2 bindings
+nnoremap <leader>˚ <c-w>K
+nnoremap <leader>∆ <c-w>J
+nnoremap <leader>˙ <c-w>H
+nnoremap <leader>¬ <c-w>L
 
 " Window resizing
 if bufwinnr(1)
@@ -106,6 +123,13 @@ if bufwinnr(1)
     nnoremap <a-left> <c-w><
     nnoremap <a-right> <c-w>>
     nnoremap <a-=> <c-w>=
+
+    " ...replacement iTerm2 bindings
+    nnoremap  <c-w>+
+    nnoremap Ô <c-w>-
+    nnoremap Ó <c-w><
+    nnoremap Ò <c-w>>
+    nnoremap ≠ <c-w>=
 endif
 
 " Repeat recording
@@ -174,4 +198,6 @@ set autoread
 
 " Allow ctrlp to open multiple buffers of the same file
 let g:ctrlp_switch_buffer = ''
+
+let g:ctrlp_working_path_mode = 'ra'
 " }}}
