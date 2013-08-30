@@ -31,7 +31,9 @@ set number
 set colorcolumn=80
 set laststatus=2
 "set statusline=%f\ %m\ %r%=Line:\ %l/%-5L\ Col:\ %-5c\ Buf:\ #%n
-set rtp+=/Users/Chris/Library/powerline/powerline/bindings/vim
+
+" Enable powerline statusline
+
 
 set list
 set listchars=trail:•
@@ -162,9 +164,6 @@ set nocompatible
 " No text wrapping since wrapping doesn't follow indents
 set nowrap
 
-" Turn on expansion of <cr> within delimiters
-let delimitMate_expand_cr=1
-
 " Search
 set incsearch
 set hlsearch
@@ -200,4 +199,9 @@ set autoread
 let g:ctrlp_switch_buffer = ''
 
 let g:ctrlp_working_path_mode = 'ra'
+
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
 " }}}
+
