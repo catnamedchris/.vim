@@ -6,7 +6,7 @@ call pathogen#infect()
 " Appearance ----{{{
 " Colors/Font
 set background=dark
-colorscheme solarized
+colorscheme molokai
 if has("gui_running")
     set lines=56
     set columns=83
@@ -30,10 +30,6 @@ set guioptions-=L
 set number
 set colorcolumn=80
 set laststatus=2
-"set statusline=%f\ %m\ %r%=Line:\ %l/%-5L\ Col:\ %-5c\ Buf:\ #%n
-
-" Enable powerline statusline
-
 
 set list
 set listchars=trail:•
@@ -201,6 +197,7 @@ let g:ctrlp_switch_buffer = ''
 
 let g:ctrlp_working_path_mode = 'ra'
 
+" Enable powerline statusline
 python from powerline.vim import setup as powerline_setup
 python powerline_setup()
 python del powerline_setup
