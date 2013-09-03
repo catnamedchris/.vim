@@ -6,7 +6,7 @@ call pathogen#infect()
 " Appearance ----{{{
 " Colors/Font
 set background=dark
-colorscheme molokai
+colorscheme solarized
 if has("gui_running")
     set lines=56
     set columns=83
