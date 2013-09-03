@@ -66,7 +66,8 @@ autocmd FileType jade setlocal tabstop=2 shiftwidth=2
 
 " Mappings ----{{{
 " Zen-coding expansion key
-let g:user_zen_expandabbr_key="<c-e>"
+"let g:user_zen_expandabbr_key="<c-e>"
+let g:user_emmet_expandabbr_key = '<c-e>'
 
 " Set comma as the leader
 let mapleader=","
