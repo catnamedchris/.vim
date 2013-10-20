@@ -7,18 +7,6 @@ call pathogen#infect()
 " Colors/Font
 set background=dark
 colorscheme solarized
-if has("gui_running")
-    set lines=56
-    set columns=83
-
-    if has("gui_gtk")
-        set guifont=Monaco\ 10
-    elseif has("gui_macvim")
-        set guifont=Monaco\ for\ Powerline:h12
-    else
-        set guifont=Monospace\ 10
-    endif
-endif
 
 " No menu, toolbar or left/right scrollbar
 set guioptions-=m
@@ -58,11 +46,12 @@ set shiftwidth=4
 autocmd FileType html setlocal tabstop=2 shiftwidth=2
 autocmd FileType javascript setlocal tabstop=2 shiftwidth=2
 autocmd FileType jade setlocal tabstop=2 shiftwidth=2
+
+autocmd BufRead,BufNewFile,BufEnter /Users/Chris/Projects/Itx/* setlocal tabstop=4 shiftwidth=4
 " }}}
 
 " Mappings ----{{{
-" Zen-coding expansion key
-"let g:user_zen_expandabbr_key="<c-e>"
+" Emmet expansion key
 let g:user_emmet_expandabbr_key = '<c-e>'
 
 " Set comma as the leader
@@ -135,7 +124,7 @@ endif
 nnoremap <space> @q
 
 " Javascript self-executing function template
-iabbrev jsf (function() {}());<left><left><left><left><left><cr><tab><left>
+iabbrev jsf (function() {})();<left><left><left><left><left><cr><tab><left>
 
 " Move to next warning/error
 nnoremap <leader>ne :lnext<cr>
@@ -159,7 +148,7 @@ set nocompatible
 " set autochdir
 
 " No text wrapping since wrapping doesn't follow indents
-set nowrap
+set wrap
 
 " Search
 set incsearch
@@ -201,5 +190,7 @@ let g:ctrlp_working_path_mode = 'ra'
 python from powerline.vim import setup as powerline_setup
 python powerline_setup()
 python del powerline_setup
+
+set backspace=indent,eol,start
 " }}}
 
