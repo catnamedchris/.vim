@@ -16,6 +16,7 @@ set guioptions-=L
 
 " Enable line numbers, column marker, and status line
 set number
+set relativenumber
 set colorcolumn=80
 set laststatus=2
 
@@ -137,6 +138,9 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_auto_loc_list=1
+let g:syntastic_mode_map = { 'mode': 'active',
+            \ 'active_filetypes': [],
+            \ 'passive_filetypes': ['javascript'] }
 " }}}
 
 " Other ----{{{

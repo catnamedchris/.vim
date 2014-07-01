@@ -1,12 +1,19 @@
-## My humble vim setup
+# dotvim
 
-While inside .vim, link the .vimrc file in your home directory to vimrc:
+## Installation
 
-    ln -s ~/.vimrc
+### Mac
+```
+git clone git://github.com/thecatwasfat/.vim.git ~/.vim
+```
 
-Then install the plugins:
+### Windows
+```
+git clone git://github.com/thecatwasfat/.vim.git ~/_vimfiles
+```
 
-    git submodule init
-    git submodule update
+### While inside .vim or _vimfiles:
 
-Cheers.
+```
+git submodule update --init
+```
